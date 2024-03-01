@@ -34,9 +34,15 @@ class _HomePageState extends State<HomePage> {
                   builder: (_, movies, __) {
                     return Visibility(
                       visible: movies != null,
-                      child: Text(
-                        "Movies",
-                        style: Theme.of(context).textTheme.headlineLarge,
+                      child: Column(
+                        children: [
+                          Text(
+                            "Movies",
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                          const SizedBox(height: 20),
+                          TextField(onChanged: _controller.onChange)
+                        ],
                       ),
                     );
                   }),

@@ -1,7 +1,6 @@
 class Movies {
   late final double averageRating;
   late final String backdropPath;
-  late final CreateBy createdBy;
   late final String description;
   late final int id;
   late final String iso_3166_1;
@@ -20,7 +19,6 @@ class Movies {
   Movies({
     required this.averageRating,
     required this.backdropPath,
-    required this.createdBy,
     required this.description,
     required this.id,
     required this.iso_3166_1,
@@ -40,7 +38,6 @@ class Movies {
   Movies.fromJson(Map<String, dynamic> json) {
     averageRating = json["average_rating"];
     backdropPath = json["backdrop_path"];
-    createdBy = CreateBy.fromJson(json["created_by"]);
     description = json["description"];
     id = json["id"];
     iso_3166_1 = json["iso_3166_1"];
@@ -62,7 +59,6 @@ class Movies {
     final data = <String, dynamic>{};
     data["average_rating"] = averageRating;
     data["backdrop_path"] = backdropPath;
-    data["created_by"] = createdBy;
     data["description"] = description;
     data["id"] = id;
     data["iso_3166_1"] = iso_3166_1;
@@ -79,35 +75,48 @@ class Movies {
     data["total_results"] = totalResults;
     return data;
   }
-}
 
-class CreateBy {
-  late final String gravatarHash;
-  late final String id;
-  late final String name;
-  late final String username;
-
-  CreateBy({
-    required this.gravatarHash,
-    required this.id,
-    required this.name,
-    required this.username,
-  });
-
-  CreateBy.fromJson(Map<String, dynamic> json) {
-    gravatarHash = json["gravatar_hash"];
-    id = json["id"];
-    name = json["name"];
-    username = json["username"];
+  @override
+  String toString() {
+    return 'averageRating: $averageRating, backdropPath: $backdropPath, description: $description, id: $id, iso_3166_1: $iso_3166_1, iso_639_1: $iso_639_1, name: $name, page: $page, posterPath: $posterPath, public: $public, listMovies: $listMovies, revenue: $revenue, runtime: $runtime, sortBy: $sortBy, totalPages: $totalPages, totalResults: $totalResults';
   }
 
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data["gravatar_hash"] = gravatarHash;
-    data["id"] = id;
-    data["name"] = name;
-    data["username"] = username;
-    return data;
+  Movies copyWith({
+    double? averageRating,
+    String? backdropPath,
+    String? description,
+    int? id,
+    String? iso_3166_1,
+    String? iso_639_1,
+    String? name,
+    int? page,
+    String? posterPath,
+    bool? public,
+    List<Movie>? listMovies,
+    int? revenue,
+    int? runtime,
+    String? sortBy,
+    int? totalPages,
+    int? totalResults,
+  }) {
+    return Movies(
+      averageRating: averageRating ?? this.averageRating,
+      backdropPath: backdropPath ?? this.backdropPath,
+      description: description ?? this.description,
+      id: id ?? this.id,
+      iso_3166_1: iso_3166_1 ?? this.iso_3166_1,
+      iso_639_1: iso_639_1 ?? this.iso_639_1,
+      name: name ?? this.name,
+      page: page ?? this.page,
+      posterPath: posterPath ?? this.posterPath,
+      public: public ?? this.public,
+      listMovies: listMovies ?? this.listMovies,
+      revenue: revenue ?? this.revenue,
+      runtime: runtime ?? this.runtime,
+      sortBy: sortBy ?? this.sortBy,
+      totalPages: totalPages ?? this.totalPages,
+      totalResults: totalResults ?? this.totalResults,
+    );
   }
 }
 
@@ -182,5 +191,41 @@ class Movie {
     data["vote_average"] = voteAverage;
     data["vote_count"] = voteCount;
     return data;
+  }
+
+  Movie copyWith({
+    bool? adult,
+    String? backdropPath,
+    List<int>? genreIds,
+    int? id,
+    String? mediaType,
+    String? originalLanguague,
+    String? originalTitle,
+    String? overview,
+    double? popularity,
+    String? posterPath,
+    String? releaseDate,
+    String? title,
+    bool? video,
+    double? voteAverage,
+    int? voteCount,
+  }) {
+    return Movie(
+      adult: adult ?? this.adult,
+      backdropPath: backdropPath ?? this.backdropPath,
+      genreIds: genreIds ?? this.genreIds,
+      id: id ?? this.id,
+      mediaType: mediaType ?? this.mediaType,
+      originalLanguague: originalLanguague ?? this.originalLanguague,
+      originalTitle: originalTitle ?? this.originalTitle,
+      overview: overview ?? this.overview,
+      popularity: popularity ?? this.popularity,
+      posterPath: posterPath ?? this.posterPath,
+      releaseDate: releaseDate ?? this.releaseDate,
+      title: title ?? this.title,
+      video: video ?? this.video,
+      voteAverage: voteAverage ?? this.voteAverage,
+      voteCount: voteCount ?? this.voteCount,
+    );
   }
 }
