@@ -1,4 +1,5 @@
 import 'package:app_film/controllers/movie_controller.dart';
+import 'package:app_film/decorators/movies_cache_repository_decorator.dart';
 import 'package:app_film/models/movies_model.dart';
 import 'package:app_film/repositories/movies_repository_imp.dart';
 import 'package:app_film/service/dio_service_imp.dart';
@@ -15,8 +16,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final MovieController _controller = MovieController(
-    MoviesRepositoryImp(
-      DioServiceImp(),
+    MoviesCacheRepositoryDecorator(
+      MoviesRepositoryImp(
+        DioServiceImp(),
+      ),
     ),
   );
   @override
